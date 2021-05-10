@@ -1,22 +1,19 @@
 const { merge } = require("webpack-merge")
-const htmlWebpackPlugin = require("html-webpack-plugin")
 const copyWebpackPlugin = require("copy-webpack-plugin")
-const VueLoaderPlugin = require("vue-loader/lib/plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const path = require('path')
 process.env.NODE_ENV = "production"
 const baseConfig = require("./webpack.common.js")
 
-
 const prodConfig = merge(baseConfig, {
-    plugins: [
-        new VueLoaderPlugin(),
-        new htmlWebpackPlugin({
-            template: "./public/index.html"
-        }),
-        new copyWebpackPlugin([
-            "public"
-        ]),
-        new CleanWebpackPlugin()
+  plugins: [
+    new copyWebpackPlugin([
+        {
+            from: path.resolve(__dirname, 'public'),
+            to: path.resolve(__dirname, 'dist/public')
+        }
+    ]),
+    new CleanWebpackPlugin()
     ]
 })
 
