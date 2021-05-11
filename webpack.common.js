@@ -5,8 +5,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
+const config = require(`./config/${process.env.NODE_ENV === 'development' ? 'dev' : 'prod'}.js`)
+process.env = Object.assign(process.env, config)
 module.exports = {
-  mode: process.env.ENV_NODE,
+  mode: process.env.NODE_ENV,
   entry: './src/main.ts',
   output: {
     filename: process.env.NODE_ENV === 'production' ? '[name]-[contenthash:8].js' : '[name]-bulid.js',

@@ -4,12 +4,18 @@ process.env.NODE_ENV = 'development'
 const baseConfig = require('./webpack.common.js')
 const portfinder = require('portfinder')
 const webpack = require('webpack')
+const mockServer = require('./utils')
+const path = require('path')
 const devConfig = merge(baseConfig, {
   devServer: {
     hot: true,
     host: 'localhost',
     contentBase: 'public',
-    port: '8080'
+    port: '8080',
+    before: app => {
+      mockServer(path.resolve(__dirname, 'mock'), app)
+    },
+    proxy: {}
   },
   devtool: 'eval-source-map',
   plugins: [

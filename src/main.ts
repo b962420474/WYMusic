@@ -5,7 +5,9 @@ import './style.less'
 import { CreateElement } from 'vue/types/umd'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css' // 加载样式
+import request from '@/lib/request'
 
+Vue.use(request)
 Vue.use(MuseUI)
 new Vue({
   router,

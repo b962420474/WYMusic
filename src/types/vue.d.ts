@@ -9,9 +9,3 @@ declare module '*.vue' { // declare声明宣告， 声明一个ambient module(�
     import vue from 'vue'
     export default vue
 }
-declare module 'vue/types/vue' { // 增强插件
-    interface Vue {
-        $Message: any,
-        $Modal: any
-    }
-}

@@ -1,7 +1,7 @@
 {
   "include": [
       "src/**/*"
-  ],
+, "shims-vue.d.ts"  ],
   "exclude": [
       "node_modules"
   ],
@@ -32,6 +32,9 @@
       "moduleResolution": "node",
       // 将每个文件作为单独的模块
       "isolatedModules": true,
+      "types": [
+        "@types/node"
+      ],
       // 编译过程中需要引入的库文件的列表
       "lib": [
           "dom",
