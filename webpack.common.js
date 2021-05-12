@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const config = require(`./config/${process.env.NODE_ENV === 'development' ? 'dev' : 'prod'}.js`)
-process.env = Object.assign(process.env, config)
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: './src/main.ts',
@@ -113,7 +112,8 @@ module.exports = {
       title: 'WYMusic'
     }),
     new webpack.DefinePlugin({
-      BASE_URL: "''"
+      BASE_URL: "''",
+      'process.env': JSON.stringify(config)
     }),
     new MiniCssExtractPlugin()
   ]

@@ -32,12 +32,12 @@
     "html-webpack-plugin": "^5.3.1",
     "less-loader": "^8.1.1",
     "mini-css-extract-plugin": "^1.6.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "portfinder": "^1.0.28",
     "terser-webpack-plugin": "^5.1.1",
     "ts-loader": "^9.1.2",
     "vue-class-component": "^7.2.6",
-    "vue-loader": "^15.9.6",
+    "vue-loader": "^15.9.7",
     "vue-property-decorator": "^9.1.2",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^5.36.2",
@@ -48,6 +48,7 @@
     "axios": "^0.21.1",
     "muse-ui": "^3.0.2",
     "vue": "^2.6.12",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   }
