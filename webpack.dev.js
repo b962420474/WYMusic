@@ -29,6 +29,7 @@ module.exports = new Promise((resolve, reject) => {
     if (error) {
       reject(error)
     } else {
+      devConfig.devServer.port = port
       devConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
           messages: [`Your application is running here: http://${devConfig.devServer.host}:${port}`]

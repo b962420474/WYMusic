@@ -12,6 +12,10 @@ export default new VueRouter({
         {
           path: 'rage',
           component: () => import('@/views/rage/index.vue')
+        },
+        {
+          path: 'songList',
+          component: () => import('@/views/songList/index.vue')
         }
       ]
     },

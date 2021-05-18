@@ -14,19 +14,36 @@
         <mu-tab value="hotSinger">热门歌手</mu-tab>
       </mu-tabs>
     </div>
-    <div>
+    <div class="default-view">
       <router-view></router-view>
     </div>
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Route } from 'vue-router'
 @Component
 export default class Main extends Vue {
   activeTab : string= 'rage';
   handleTabChange (val: string) :void {
-    console.log(val)
+    this.$router.push({ path: `/index/${val}` })
+  }
+
+  created () :void {
+    const path = this.$route.path
+    const tmpArr = path.split('/')
+    if (tmpArr[1] === 'index') {
+      this.activeTab = tmpArr[2]
+    }
+  }
+
+  @Watch('$route')
+  getRoute (newVal:Route, oldVal:Route) {
+    const path = newVal.path
+    const tmpArr = path.split('/')
+    if (tmpArr[1] === 'index') {
+      this.activeTab = tmpArr[2]
+    }
   }
 }
 </script>
@@ -55,4 +72,7 @@ export default class Main extends Vue {
     color: @primaryColor;
   }
 }
+.default-view {
+    margin-top: 104px;
+  }
 </style>

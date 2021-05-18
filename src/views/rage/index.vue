@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="loading-wrapper" v-if="isloading">
+    <div class="loading-wrapper" v-if="isLoading">
       <div class="loading"></div>
       <div class="loading-txt">正在加载中</div>
     </div>
@@ -18,8 +18,8 @@
           推荐歌单
           <router-link :to="{path: '/index/songList'}">更多></router-link>
         </div>
-        <mu-flex wrap="wrap" justify="space-around" class="box" :gutter="0">
-          <mu-flex basis="28%" class="item" :key="item.id" v-for="item in playList">
+        <mu-flex wrap="wrap" justify-content="around" class="mu-flexbox box mu-flex-row" >
+          <div style="flex:28%" class="item mu-flexbox-item" :key="item.id" v-for="item in playList">
             <router-link
               :to="{name: 'playListDetail',params: { id: item.id, name: item.name, coverImg: item.picUrl, creator: item.copywriter, count: item.playCount, desc: item.description }}"
             >
@@ -27,18 +27,18 @@
               <img class="item-img img-response" :src="item.picUrl" lazy="loading" />
               <div class="item-name">{{item.name}}</div>
             </router-link>
-          </mu-flex>
+          </div>
         </mu-flex>
         <div class="g-title mv">
           推荐MV
           <router-link :to="{}">更多></router-link>
         </div>
-        <mu-flex wrap="wrap" justify="space-between" class="box" :gutter="0">
-          <mu-flex basis="48%" class="mv-item" v-for="item in mvList" :key="item.artistId">
+        <mu-flex wrap="wrap" justify-content="between" class="mu-flexbox box mu-flex-row" >
+          <div style="flex:0 0 48%;" class="mu-flexbox-item mv-item" v-for="item in mvList" :key="item.artistId">
             <img class="img-response" :src="item.picUrl" />
             <div class="mv-name">{{item.name}}</div>
             <div class="mv-author">{{item.artistName}}</div>
-          </mu-flex>
+          </div>
         </mu-flex>
       </div>
     </div>
@@ -71,10 +71,12 @@ export default class Rage extends Vue {
     paginationClickable: true
   }
 
-  bannerList: any[] = [];
-  playList: any = [];
-  mvList: any = [];
-  $request: any
+  bannerList: any[] = []
+  playList: any = []
+  mvList: any = []
+  created () : void {
+  }
+
   async mounted () :Promise<void> {
     const result = await this.loadData()
     if (result) {
@@ -90,17 +92,17 @@ export default class Rage extends Vue {
     })
     const getPlayList : any = this.$request({
       method: 'post',
-      url: '/weapi/personalized/playlist'
+      url: '/personalized'
     })
     const getMvList : any = this.$request({
       method: 'post',
-      url: '/weapi/personalized/mv'
+      url: '/personalized/mv'
     })
     try {
       result = await Promise.all([getBannerList, getPlayList, getMvList])
-      this.bannerList = result[0].result
-      this.playList = result[1].result
-      this.mvList = result[2].result
+      this.bannerList = result[0].banners
+      this.playList = result[1].result.length > 6 && result[1].result.slice(0, 6)
+      this.mvList = result[2].result.length > 6 ? result[2].result.slice(0, 6) : result[2].result
     } catch (error) {
       return result
     }
@@ -109,6 +111,11 @@ export default class Rage extends Vue {
 }
 </script>
 <style lang="less" scoped>
+@import "@/assets/theme.less";
+.container {
+    width: 100%;
+    padding: 0;
+}
 .img-response {
   max-width: 100%;
   height: auto;
@@ -192,34 +199,11 @@ export default class Rage extends Vue {
   }
   &-item {
     position: relative;
-    margin: 0 5px 5px 10px;
   }
   &-author {
     font-size: 12px;
     color: #666;
   }
-}
-.loading {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  background: #fff;
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-top: 70%;
-  margin-left: -1.25rem;
-  background: url("@/assets/img/rage_loading.png") no-repeat;
-  background-size: cover;
-  -webkit-animation: rotating 5s linear infinite;
-  animation: rotating 5s linear infinite;
-}
-.loading-txt {
-  position: absolute;
-  top: 0;
-  color: #4a4a4a;
-  margin-top: 87%;
-  width: 100%;
-  text-align: center;
 }
 .mv-name {
   width: 100%;
