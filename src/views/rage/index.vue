@@ -21,7 +21,7 @@
         <mu-flex wrap="wrap" justify-content="around" class="mu-flexbox box mu-flex-row" >
           <div style="flex:28%" class="item mu-flexbox-item" :key="item.id" v-for="item in playList">
             <router-link
-              :to="{name: 'playListDetail',params: { id: item.id, name: item.name, coverImg: item.picUrl, creator: item.copywriter, count: item.playCount, desc: item.description }}"
+              :to="{name: 'playListDetail',params: { id: item.id, name: item.name, coverImg: item.picUrl, creator: {nickname:item.copywriter,avatarUrl:item.picUrl}, count: item.playCount, desc: item.description }}"
             >
               <div class="bar">{{item.playCount | formatCount}}</div>
               <img class="item-img img-response" :src="item.picUrl" lazy="loading" />

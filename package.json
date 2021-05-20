@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "lint": "eslint --ext .js,.vue,.ts src"
+    "lint": "eslint --ext .js,.vue,.ts src",
+    "fix": "eslint --ext .js,.vue,.ts src --fix"
   },
   "author": "",
   "license": "ISC",
@@ -40,6 +41,7 @@
     "vue-loader": "^15.9.7",
     "vue-property-decorator": "^9.1.2",
     "vue-template-compiler": "^2.6.12",
+    "vuex-class": "^0.3.2",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"

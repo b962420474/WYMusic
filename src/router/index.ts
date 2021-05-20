@@ -16,12 +16,25 @@ export default new VueRouter({
         {
           path: 'songList',
           component: () => import('@/views/songList/index.vue')
+        },
+        {
+          path: 'leaderBoard',
+          component: () => import('@/views/leaderBoard/index.vue')
+        },
+        {
+          path: 'hostSinger',
+          component: () => import('@/views/hostSinger/index.vue')
         }
       ]
     },
     {
       path: '/',
       redirect: '/index/rage'
+    },
+    {
+      path: '/playListDetail/:id',
+      name: 'playListDetail',
+      component: () => import('@/views/playListDetail/index.vue')
     }
   ]
 })
