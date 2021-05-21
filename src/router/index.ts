@@ -22,7 +22,7 @@ export default new VueRouter({
           component: () => import('@/views/leaderBoard/index.vue')
         },
         {
-          path: 'hostSinger',
+          path: 'hotSinger',
           component: () => import('@/views/hostSinger/index.vue')
         }
       ]

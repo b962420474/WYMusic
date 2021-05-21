@@ -29,8 +29,9 @@
         </div>
         <div class="playlist-holder">
             <div class="add-all">
-                <mu-button icon  slot="left" class="demo-flat-button" label="播放全部" @click="playAll">
-                  <mu-icon value="add_circle_outline" ></mu-icon>
+                <mu-button  slot="left" class="demo-flat-button" label="播放全部" @click="playAll">
+                  <mu-icon right value="add_circle_outline" ></mu-icon>
+                  播放全部
                 </mu-button>
                 <mu-divider/>
             </div>
@@ -134,9 +135,14 @@ export default class PlayList extends Vue {
   playAudio () {}
 }
 </script>
+<style lang="less">
+.mu-item{
+  min-height: 2rem;
+}
+</style>
 <style lang="less" scoped>
-    .item{
-      min-height: 70px;
+    .item {
+      min-height: 2rem ;
     }
     .fixed-title {
         position: fixed;
@@ -243,7 +249,7 @@ export default class PlayList extends Vue {
     }
     .mu-item-title {
         white-space:nowrap;
-        height: 1.7rem;
+        height: 1.2rem;
         overflow: hidden;
         text-overflow: ellipsis;
     }
