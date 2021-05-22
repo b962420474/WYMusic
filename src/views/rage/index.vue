@@ -48,7 +48,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import 'swiper/css/swiper.css'
+import 'swiper/dist/css/swiper.css'
 @Component({
   components: {
     Swiper,
