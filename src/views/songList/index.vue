@@ -11,9 +11,13 @@
             </div>
             <mu-flex wrap="wrap" justify-content="between" class="mu-flexbox box mu-flex-row" >
                 <div style="flex:0 0 48%;" class="mu-flexbox-item list-item" v-for="item in songList" :key="item.id">
+                  <router-link
+                    :to="{name: 'playListDetail',params: { id: item.id, name: item.name, coverImg: item.coverImgUrl, creator: {nickname:item.creator.nickname,avatarUrl:item.creator.avatarUrl}, count: item.playCount, desc: item.description }}"
+                  >
                     <div class="list-bar">{{item.playCount | formatCount}}</div>
                     <img class="img-response" :src="item.coverImgUrl + '?param=300y300'" lazy="loading" />
                     <div class="mv-name">{{item.name}}</div>
+                    </router-link>
                 </div>
             </mu-flex>
             </mu-load-more>

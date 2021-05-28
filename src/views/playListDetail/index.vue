@@ -19,7 +19,9 @@
                 <div class="info-title">
                     <p class="titile">{{name}}</p>
                     <p class="author" v-if="creator.avatarUrl">
-                        <mu-avatar slot="left"  :src="creator.avatarUrl + '?param=50y50'" :size="30" :iconSize="20"/>
+                        <mu-avatar slot="left"  :size="30" :iconSize="20">
+                          <img :src="creator.avatarUrl + '?param=50y50'">
+                        </mu-avatar>
                         <span>{{creator.nickname}}</span>
                     </p>
                 </div>
@@ -29,7 +31,7 @@
         </div>
         <div class="playlist-holder">
             <div class="add-all">
-                <mu-button  slot="left" class="demo-flat-button" label="播放全部" @click="playAll">
+                <mu-button  slot="left" label="播放全部" @click="playAll">
                   <mu-icon right value="add_circle_outline" ></mu-icon>
                   播放全部
                 </mu-button>
@@ -138,6 +140,10 @@ export default class PlayList extends Vue {
 <style lang="less">
 .mu-item{
   min-height: 2rem;
+}
+.mu-raised-button{
+  -webkit-box-shadow:none;
+  box-shadow: none;
 }
 </style>
 <style lang="less" scoped>
